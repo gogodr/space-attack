@@ -18,3 +18,4 @@ Assign a Ready backlog ticket with a bounded scope and provide its owner role fi
 > Work on SA-05 from BACKLOG.md using agents/PHYSICS_RENDERING.md and agents/README.md. Follow GAME_PLAN.md and the repository instructions. Coordinate any interface changes with the technical lead. Implement the ticket, run its meaningful verification, and report the shared handoff fields before marking it complete.
 
 Continue with the remaining Review/In-progress tickets in BACKLOG.md. The technical lead coordinates shared interfaces and integration. Role files describe specialist responsibilities; parallel execution should only be used when authorized and supported by available tooling.
+
