@@ -1,5 +1,7 @@
 # Vercel deployment
 
+**Production:** https://space-attack-mu.vercel.app. Deployed October 7, 2026; Vercel deployment `dpl_8uTSbbLVEQQd1SXA2d3FVTrvsweN` is READY. Public homepage/API/database health, asset routing and real Chromium gameplay smoke checks pass. Evidence is retained in `screenshots/vercel-verification.json` and `screenshots/vercel-production-desktop.png`.
+
 Space Attack uses Vercel for the Vite SPA and an Express API function. A free Neon Postgres database stores the shared, nickname-only leaderboard. The Vercel project is `gogodr/space-attack`; local `.vercel/project.json` records its link and is excluded from Git.
 
 ## Runtime and storage

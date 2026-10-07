@@ -1,5 +1,7 @@
 # Space Attack — Browser Game
 
+Play the deployed game: **https://space-attack-mu.vercel.app**. Hosted on Vercel with a shared, nickname-only Neon leaderboard. [Deployment guide](DEPLOYMENT.md) records configuration, verification and future deployment commands. [Sprite assets](art/sprites/README.md) records the animated retro atlas and exact generation prompts.
+
 ## Start here
 
 - [Game plan](GAME_PLAN.md): gameplay, accepted tuning, technical direction, and shared online leaderboard requirements.

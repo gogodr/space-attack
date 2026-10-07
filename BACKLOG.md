@@ -299,11 +299,19 @@ Lead/integrator coordinated three specialist sessions using the prepared briefs:
 | SA-21 | Review | Art/Audio / UI | Original WebAudio music/cues and toggles integrated; subjective audible quality review remains |
 | SA-22 | In progress | Physics / QA | One atlas texture/material shared by sprite quads, frame UVs updated without texture uploads; agreed-device 60 FPS measurement remains |
 | SA-23–26 | Done | Backend / UI / lead | Seven API tests and browser score-flow checks; server validation, persistence, idempotency, nickname-only submission and failure recovery pass |
-| SA-27 | Review | Backend / lead | Two browser clients share service data; production SPA route tests pass; hosting configuration/HTTPS remains |
+| SA-27 | Done | Backend / lead | Vercel HTTPS deployment and free Neon shared database; cross-instance API/rate-limit checks and public routing smoke pass |
 | SA-28 | In progress | QA / lead | Chromium and narrow-layout checks pass; additional browser/device and full human playthrough coverage remain |
 | SA-29 | Todo | Lead | Setup instructions delivered; final release sign-off follows remaining QA/performance/hosting work |
 
-There are no known blocking defects in the tested paths. Do not interpret deterministic fixtures as human difficulty verification or the local service as a publicly hosted online game.
+There are no known blocking defects in the tested paths. Deterministic fixtures do not establish human difficulty verification. The Vercel production service is now public; local preview scores remain in the separate SQLite database.
+
+## SA-31 — Animated retro sprite atlas
+
+State: Done (implementation; human art review remains SA-20). Replaced player/enemy/laser/effect box meshes with generated sprites. Yellow A, Purple B and Red C have distinct silhouettes and four-frame loops; player thrusters and lasers animate, while explosions and cancellations play once. Packed all 28 frames into one transparent PNG with a shared renderer texture/material. Lives HUD reuses the player frame. Retained source art, prompts and packing script in `art/sprites/` and `scripts/pack-sprites.py`. Atlas unit tests and Chromium animation/pause checks pass; gameplay physics and scores remain unchanged.
+
+## SA-32 — Vercel production deployment
+
+State: Done. Production: https://space-attack-mu.vercel.app. Created `gogodr/space-attack`, connected an explicitly free Neon database, applied additive Postgres schema, adapted async service/storage boundaries and implemented shared rate counters. Vercel serves the SPA and Express API function on one HTTPS origin. Existing SQLite data remains intact. Verification: production build, 54 automated tests including real Neon concurrency/rate limits, and public Chromium/HTTP smoke checks pass. Exact configuration, commands and future redeployment steps are in [DEPLOYMENT.md](DEPLOYMENT.md). Human balance, other-browser coverage and reference-device performance remain tracked separately.
 
 ## SA-30 — Component/module architecture refactor
 
