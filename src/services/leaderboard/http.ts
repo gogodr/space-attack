@@ -12,7 +12,8 @@ export async function request<T>(
   if (signal.aborted) controller.abort();
   const timeout = setTimeout(abort, 12000);
   try {
-    const response = await fetch(path, {
+    const base = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '');
+    const response = await fetch(`${base}${path}`, {
       signal: controller.signal,
       method: body ? 'POST' : 'GET',
       headers: body ? { 'Content-Type': 'application/json' } : undefined,

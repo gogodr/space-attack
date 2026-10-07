@@ -13,6 +13,7 @@ import { mountStaticSpa } from './middleware/staticSpa.mjs';
 import { createHealthRouter } from './routes/health.mjs';
 import { createRunsRouter } from './routes/runs.mjs';
 import { createLeaderboardRouter } from './routes/leaderboard.mjs';
+import { createCors } from './middleware/cors.mjs';
 
 /** Compose HTTP adapters around local SQLite or shared Postgres storage. */
 export function createApp(options = {}) {
@@ -32,6 +33,8 @@ export function createApp(options = {}) {
 
   app.disable('x-powered-by');
   if (process.env.VERCEL) app.set('trust proxy', 1);
+  const corsOrigins = options.corsOrigins ?? (process.env.CORS_ORIGINS ?? '').split(',').filter(Boolean);
+  app.use('/api', createCors(corsOrigins));
   app.use('/api', (_req, res, next) => {
     res.set('Cache-Control', 'no-store');
     next();
