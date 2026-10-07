@@ -1,0 +1,14 @@
+art/
+screenshots/
+work/
+data/
+tests/
+e2e/
+test-results/
+playwright-report/
+agents/
+.agents/
+skills-lock.json
+*.md
+.env*
+server/*.test.mjs

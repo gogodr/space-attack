@@ -25,30 +25,24 @@ function matchesSubmission(entry, submission) {
 
 export function createLeaderboardService({ runs, leaderboard }) {
   return {
-    list() {
-      return leaderboard.listTop().map(publicEntry);
+    async list() {
+      return (await leaderboard.listTop()).map(publicEntry);
     },
-    submit(body) {
+    async submit(body) {
       const submission = validateSubmission(body);
       const { runId, token, nickname, score, level, completed } = submission;
-      if (!matchesToken(runs.findCredentials(runId), token)) {
+      if (!matchesToken(await runs.findCredentials(runId), token)) {
         throw new RequestError(403, 'Run credentials are invalid.');
       }
-      // Identical and conflicting retries both finish their read transaction first.
-      const result = leaderboard.transaction(() => {
-        const existing = leaderboard.findByRun(runId);
-        if (existing) return { existing };
-        const entry = {
-          id: randomUUID(),
-          nickname,
-          score,
-          level,
-          completed,
-          submittedAt: new Date().toISOString(),
-        };
-        leaderboard.insert(runId, entry);
-        return { entry, created: true };
-      });
+      const entry = {
+        id: randomUUID(),
+        nickname,
+        score,
+        level,
+        completed,
+        submittedAt: new Date().toISOString(),
+      };
+      const result = await leaderboard.insertOrFind(runId, entry);
       if (result.existing) {
         if (!matchesSubmission(result.existing, submission)) {
           throw new RequestError(

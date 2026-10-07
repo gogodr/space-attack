@@ -1,6 +1,6 @@
 # Implementation contracts
 
-Project root is this directory. React 19 / Fiber 9 / Rapier 2; TypeScript/Vite SPA. Backend: Express on Node 22.13+ using built-in SQLite; persistent database excluded from version control. Local review uses Vite proxy; production Node serves the built SPA and API on one origin. HTTPS is supplied by the eventual hosting reverse proxy.
+Project root is this directory. React 19 / Fiber 9 / Rapier 2; TypeScript/Vite SPA. Backend: Express on Node 22, using SQLite locally and Neon Postgres for Vercel. Local review uses Vite proxy; Vercel serves the static SPA and API function on one HTTPS origin. Database files and credentials are excluded from version control. Deployment configuration and commands are in DEPLOYMENT.md.
 
 ## Module layout
 
@@ -36,8 +36,8 @@ src/
       GameScene.tsx           Canvas/Physics composition
       scene/                  camera, starfield, loading and error boundary
       entities/               player, enemy, laser and reusable body binding
-      visuals/                ship geometry/patterns and laser meshes
-      effects/                explosion/cancellation particle presentation
+      sprites/                shared atlas material, UVs, animation and enemy identities
+      effects/                explosion/cancellation sprite presentation
     config/                   arena/extents, tuning and level generation
     types/                    entities, state/input, events, levels and leaderboard
     utils/                    shared simulation math
@@ -52,6 +52,9 @@ server/
   services/                  registration, credentials, validation and submission rules
   routes/                    HTTP health/run/leaderboard adapters
   middleware/                rate limits, API errors and production SPA serving
+api/index.mjs                Vercel API composition entry point
+public/assets/sprites/       runtime atlas PNG and frame manifest
+art/sprites/                 generated source sheets and provenance (not deployed)
 ```
 
 Individual UI components have collocated CSS where appropriate. `src/styles.css` is an ordered import entry point; shared and responsive rules preserve the original cascade. Source is formatted using the project's `.prettierrc.json` conventions.
@@ -65,11 +68,11 @@ Individual UI components have collocated CSS where appropriate. `src/styles.css`
 - `SimulationBridge` advances the engine and asks the Rapier detector for impact candidates. Sweeps consider both trajectories and initial overlaps; combat resolves candidates once in the established order.
 - Audio cue definitions and musical sequencing delegate oscillator creation to `SynthVoice`. `ArcadeAudio` owns settings and sequencer lifecycle; the React hook handles cleanup.
 - The leaderboard client delegates requests/timeouts to its HTTP module. UI read/submission hooks own loading/error/retry presentation, not backend validation or ranking.
-- Server routes adapt HTTP to injected services. Services implement validation, credential checks and retry semantics without Express dependencies. Repositories own SQL/prepared statements and the atomic submission transaction. Only database modules open/create the connection/schema; the app owns closing it.
+- Server routes adapt HTTP to injected async services. Services implement validation, credential checks and retry semantics without Express dependencies. Repositories own SQL and atomic submission handling. The storage factory selects SQLite or Neon; the Postgres migration script initializes its additive schema. Rate-limit stores are local for SQLite and shared database counters for Neon.
 
 Existing import paths (`game/engine.ts`, `game/config.ts`, `game/types.ts`, `game/Scene.tsx`, `game/collisions.ts`, `audio.ts`, and `services/leaderboard.ts`) are compatibility re-export facades. They contain no competing implementations. New work belongs in the owning module above, not in these facades.
 
-Ownership for future development: Gameplay → simulation/systems/config; Physics/Rendering → physics/rendering; UI → app/ui/client service; Art/Audio → visuals/audio; Backend → server; QA → behavioral and browser tests. Shared type changes must identify affected consumers before integration.
+Ownership for future development: Gameplay → simulation/systems/config; Physics/Rendering → physics/rendering; UI → app/ui/client service; Art/Audio → art/public assets/audio; Backend → server; QA → behavioral and browser tests. Shared type changes must identify affected consumers before integration.
 
 ## Stable integration contracts
 

@@ -3,10 +3,10 @@ import { hashToken, issueToken } from './credentials.mjs';
 
 export function createRunService(runs) {
   return {
-    register() {
+    async register() {
       const id = randomUUID();
       const token = issueToken();
-      runs.insert({
+      await runs.insert({
         id,
         tokenHash: hashToken(token),
         createdAt: new Date().toISOString(),

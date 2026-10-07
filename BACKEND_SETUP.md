@@ -2,7 +2,7 @@
 
 Node.js **22.13 or newer** provides the built-in SQLite driver. Install the root project's dependencies, then use `npm run dev` for the Vite website and API together. Vite forwards `/api` to port 3001. Run `node --test server/*.test.mjs` for isolated HTTP/SQLite integration tests.
 
-For a production preview, run `npm run build`, then `npm start`. Express serves the built SPA and API on the same origin, including direct SPA route visits. No build output means API-only operation with an actionable 404. There is no deployment configured or external service provisioned yet.
+For a local production preview, run `npm run build`, then `npm start`. Express serves the built SPA and API on the same origin, including direct SPA route visits. No build output means API-only operation with an actionable 404. The Vercel deployment uses an Express API function and shared Neon Postgres instead of a local database file; see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Configuration
 
@@ -11,10 +11,11 @@ For a production preview, run `npm run build`, then `npm start`. Express serves 
 | `PORT` | `3001` | API/production server port; Vite's local proxy expects this default |
 | `HOST` | `127.0.0.1` | Listen interface; use `0.0.0.0` behind a hosting reverse proxy |
 | `DATABASE_PATH` | `data/space-attack.sqlite` under the project | Persistent SQLite file; parent directories are created automatically |
+| `DATABASE_URL` | Unset locally | Neon Postgres connection string; selects shared serverless storage when present; required on Vercel |
 
 Keep `DATABASE_PATH` on persistent writable storage. Each deployment instance needs access to the same database to share scores. This implementation is intended for a single Node service on one host with local SQLite storage, rather than independent ephemeral replicas. Exclude the database and its `-wal`/`-shm` companion files from version control. Back up through SQLite's backup tooling or while the service is stopped; copying only the live main file can omit recent WAL data. Startup creates missing tables and indexes; there is no destructive reset.
 
-For eventual hosting, provide HTTPS at the reverse proxy and serve the site/API together. The app deliberately does not trust forwarded IP headers by default. Configure Express `trust proxy` for the actual trusted proxy topology before public hosting so rate limits distinguish players correctly; never blindly trust arbitrary forwarded headers.
+Local/self-hosted operation does not trust forwarded headers by default. Vercel supplies HTTPS and trusted client forwarding; only there does the app trust one proxy hop. Postgres-backed rate counters retain per-client quotas across function instances. For another host, configure the actual trusted proxy topology before exposing the service.
 
 ## API
 
@@ -46,5 +47,7 @@ These safeguards validate data and prevent duplicate submissions; browser-report
 | `server/middleware/` | Rate limits, error/404 responses, and production SPA serving |
 
 Repositories receive their database connection; services receive repositories; routers receive services and rate-limit middleware. Business rules do not depend on Express. The leaderboard repository keeps the lookup and insert inside `BEGIN IMMEDIATE`/`COMMIT`, with rollback on failure and the existing unique constraint on `run_id`.
+
+`database/storage.mjs` selects the storage adapter. The async service boundary works with both synchronous SQLite and asynchronous Neon repositories. The Postgres leaderboard repository uses `INSERT ... ON CONFLICT DO NOTHING`, followed by a separate lookup for retries so simultaneous requests see the committed winner. `PostgresRateLimitStore` uses atomic database upserts. Apply the additive Neon schema with `npm run db:migrate`; it never resets scores. `npm run test:postgres` verifies real shared storage in an isolated temporary schema.
 
 The refactor preserves the on-disk schema and startup defaults. Existing databases remain compatible without migrations or resets. Run the HTTP integration suite after changes to verify public field projection, validation, ranking, persistence, concurrent retries, rate limiting, and SPA/API fallback boundaries.

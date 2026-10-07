@@ -1,0 +1,39 @@
+# Vercel deployment
+
+Space Attack uses Vercel for the Vite SPA and an Express API function. A free Neon Postgres database stores the shared, nickname-only leaderboard. The Vercel project is `gogodr/space-attack`; local `.vercel/project.json` records its link and is excluded from Git.
+
+## Runtime and storage
+
+`vercel.json` builds with `npm run build`, serves `dist/`, routes `/api/*` to `api/index.mjs`, and preserves static asset paths. SPA routes fall back to `index.html`; unknown API routes remain JSON 404s. The Node 22 API exports the Express app without opening a listening socket. Database credentials stay in server environment variables and are never exposed as `VITE_*` values.
+
+`DATABASE_URL` selects Neon via HTTP queries. Without it, normal local development uses the existing SQLite file. A Vercel function refuses to start without `DATABASE_URL`, preventing accidental ephemeral leaderboard storage. Vercel's trusted forwarding hop supplies client IPs; shared Postgres rate counters enforce quotas across function instances and store hashed keys instead of raw IPs.
+
+The additive Postgres schema uses `sa_runs`, `sa_entries`, and `sa_rate_limits`. Run tokens are hashed, one score per run is enforced by a unique database constraint, and concurrent identical/conflicting submissions retain the established retry semantics. The SQLite database is preserved. Local preview scores are not automatically copied into the new online leaderboard.
+
+## Deployment commands
+
+From this project directory, after Vercel login/project linking and Neon marketplace acceptance:
+
+```powershell
+npx vercel integration add neon --name space-attack-leaderboard --plan free_v3 --metadata region=iad1 --metadata auth=false
+npx vercel env pull .env.local --environment production
+npm run db:migrate
+npm run test:postgres
+npm test
+npm run test:e2e
+npx vercel --prod --yes
+```
+
+Provision the database only once. Reuse the connected resource for subsequent deployments. The free plan is explicit; no paid upgrade or auto-recharge is configured. Database and API use the `iad1` region. The CLI deploy path works independently of GitHub integration; automatic Git deployments require a GitHub Login Connection in Vercel and repository linking.
+
+`npm run test:postgres` uses a uniquely named temporary schema in the connected Neon database and removes only that test schema afterward. It tests two API instances, persistence, token validation, concurrent retry handling, database constraints, and shared rate limits without adding test scores to the real leaderboard.
+
+`.vercelignore` excludes art source sheets, screenshots, local databases, secrets, tests and project briefs from uploaded deployment sources. The runtime atlas remains in `public/assets/sprites/`. `.env*` files and `.vercel/` are excluded from version control. Keep previews isolated from production scores when testing future database changes.
+
+## Verification and ongoing operation
+
+After deployment, check `/`, `/api/health`, `/api/leaderboard`, unknown API paths, the sprite atlas, and a direct SPA route. Play and verify a game-over/victory screen, nickname submission, shared reads, and restart. Deployment smoke checks should not submit fabricated scores to the public leaderboard.
+
+Human campaign balancing, broader browser/device coverage, and reference-device performance measurements remain follow-up work. Browser-reported scores are not cheat-proof. Configure database backups and review free-plan usage in the connected Neon/Vercel dashboards as traffic grows.
+
+Official references: [Vercel Express](https://vercel.com/docs/frameworks/backend/express), [Vercel integration CLI](https://vercel.com/docs/cli/integration), [Vercel request headers](https://vercel.com/docs/headers/request-headers), [Neon driver](https://github.com/neondatabase/serverless).

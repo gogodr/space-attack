@@ -295,9 +295,9 @@ Lead/integrator coordinated three specialist sessions using the prepared briefs:
 | SA-15–17 | Done | UI / lead | Chromium tests verify menus/HUD, hit countdown, restart, focus handling and terminal screens; screenshots visually inspected |
 | SA-18 | Done | Gameplay / QA | All 15 configs, increasing difficulty, reserve drainage and no level 16 verified |
 | SA-19 | In progress | QA / player playtesting | Deterministic campaign passes; complete human campaign/balance review remains |
-| SA-20 | Review | Art/Audio / lead | Original voxel-style ship geometry and integrated retro presentation; final visual polish remains reviewable |
+| SA-20 | Review | Art/Audio / lead | Generated retro player, three distinct animated enemies, lasers and effects packed into one atlas; browser visual checks pass; human art review remains |
 | SA-21 | Review | Art/Audio / UI | Original WebAudio music/cues and toggles integrated; subjective audible quality review remains |
-| SA-22 | In progress | Physics / QA | Ship pixels merged into one draw per ship, split build chunks; agreed-device 60 FPS measurement remains |
+| SA-22 | In progress | Physics / QA | One atlas texture/material shared by sprite quads, frame UVs updated without texture uploads; agreed-device 60 FPS measurement remains |
 | SA-23–26 | Done | Backend / UI / lead | Seven API tests and browser score-flow checks; server validation, persistence, idempotency, nickname-only submission and failure recovery pass |
 | SA-27 | Review | Backend / lead | Two browser clients share service data; production SPA route tests pass; hosting configuration/HTTPS remains |
 | SA-28 | In progress | QA / lead | Chromium and narrow-layout checks pass; additional browser/device and full human playthrough coverage remain |

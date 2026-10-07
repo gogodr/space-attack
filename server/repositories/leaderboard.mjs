@@ -29,6 +29,14 @@ export function createLeaderboardRepository(db) {
         entry.submittedAt,
       );
     },
+    insertOrFind(runId, entry) {
+      return this.transaction(() => {
+        const existing = this.findByRun(runId);
+        if (existing) return { existing };
+        this.insert(runId, entry);
+        return { entry, created: true };
+      });
+    },
     // Serialize the check and insert before the UNIQUE run_id constraint is tested.
     transaction(operation) {
       db.exec('BEGIN IMMEDIATE');

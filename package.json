@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "dev:web": "vite --host 127.0.0.1",
@@ -11,10 +14,13 @@
     "test": "vitest run && node --test server/*.test.mjs",
     "typecheck": "tsc -b",
     "start": "node server/index.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate-postgres.mjs",
+    "test:postgres": "node --env-file-if-exists=.env.local --test server/postgres.integration.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.19.2",
+    "@neondatabase/serverless": "^1.2.0",
     "@react-three/fiber": "^9.0.0",
     "@react-three/rapier": "^2.0.0",
     "express": "^5.1.0",

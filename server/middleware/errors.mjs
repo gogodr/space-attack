@@ -5,11 +5,9 @@ export function apiNotFound(_req, res) {
 }
 
 export function resourceNotFound(_req, res) {
-  res
-    .status(404)
-    .json({
-      error: 'Resource not found. Build the website before production start.',
-    });
+  res.status(404).json({
+    error: 'Resource not found. Build the website before production start.',
+  });
 }
 
 export function handleErrors(error, _req, res, _next) {
