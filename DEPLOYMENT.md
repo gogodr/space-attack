@@ -1,6 +1,6 @@
 # Vercel deployment
 
-**Production:** https://space-attack-mu.vercel.app. Deployed October 7, 2026; Vercel deployment `dpl_8uTSbbLVEQQd1SXA2d3FVTrvsweN` is READY. Public homepage/API/database health, asset routing and real Chromium gameplay smoke checks pass. Evidence is retained in `screenshots/vercel-verification.json` and `screenshots/vercel-production-desktop.png`.
+**Production:** https://space-attack-mu.vercel.app. Deployed October 7, 2026; Vercel deployment `dpl_DEK2WG5ksm3DeibBL4DZYKYm9ZNt` is READY. Public homepage/API/database health, asset routing and real Chromium gameplay smoke checks pass. Evidence is retained in `screenshots/vercel-verification.json` and `screenshots/vercel-production-desktop.png`.
 
 Space Attack uses Vercel for the Vite SPA and an Express API function. A free Neon Postgres database stores the shared, nickname-only leaderboard. The Vercel project is `gogodr/space-attack`; local `.vercel/project.json` records its link and is excluded from Git.
 
@@ -39,3 +39,11 @@ After deployment, check `/`, `/api/health`, `/api/leaderboard`, unknown API path
 Human campaign balancing, broader browser/device coverage, and reference-device performance measurements remain follow-up work. Browser-reported scores are not cheat-proof. Configure database backups and review free-plan usage in the connected Neon/Vercel dashboards as traffic grows.
 
 Official references: [Vercel Express](https://vercel.com/docs/frameworks/backend/express), [Vercel integration CLI](https://vercel.com/docs/cli/integration), [Vercel request headers](https://vercel.com/docs/headers/request-headers), [Neon driver](https://github.com/neondatabase/serverless).
+
+## Codex Sites deployment
+
+Space Attack is also deployed at https://space-attack-arcade-gogodr.thegogodr.chatgpt.site (owner-private). Sites hosts the same Vite SPA; its browser requests use the Vercel API and existing Neon database, so scores are shared between both deployments. No database credentials are copied into the Sites frontend.
+
+The separate Sites checkout is `../space-attack-sites`. Its `.openai/hosting.json` records project `appgprj_6ac66384e02881918064947c6768a106`; `scripts/build-sites.mjs` builds with the public `VITE_API_BASE_URL`. Source commit `9879f969e672ead6209f225511de07526ba6302a` was pushed and packaged with the bundled Sites workflow. Deployment `appgdep_6ac6658981d4819194fc2fbf30ccd7f1` succeeded on October 7, 2026.
+
+Vercel production `CORS_ORIGINS` allows the exact Sites origin. The API supports GET/POST/OPTIONS, does not grant credentialed CORS, and preserves existing run-token and rate-limit behavior. Future Sites changes must be made in its checkout, built, pushed and published through the Sites workflow; changes in this Vercel checkout do not automatically sync there. Keep the API origin allowlist aligned with the actual successful Sites URL.
