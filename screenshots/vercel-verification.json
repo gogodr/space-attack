@@ -1,0 +1,67 @@
+{
+  "origin": "https://space-attack-mu.vercel.app",
+  "verifiedAt": "2026-10-07T15:09:34.791Z",
+  "responses": [
+    {
+      "path": "/",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/api/health",
+      "status": 200,
+      "type": "application/json; charset=utf-8",
+      "json": {
+        "status": "ok"
+      }
+    },
+    {
+      "path": "/api/leaderboard",
+      "status": 200,
+      "type": "application/json; charset=utf-8",
+      "json": {
+        "entries": [
+          {
+            "id": "3a184bbe-258b-4a99-8830-2854bbdbd664",
+            "nickname": "Go",
+            "score": 8500,
+            "level": 4,
+            "completed": false,
+            "submittedAt": "2026-10-07T15:09:28.233Z"
+          }
+        ]
+      }
+    },
+    {
+      "path": "/api/not-found",
+      "status": 404,
+      "type": "application/json; charset=utf-8",
+      "json": {
+        "error": "API route not found."
+      }
+    },
+    {
+      "path": "/assets/sprites/space-attack-atlas.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "/mission/review",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/assets/missing.png",
+      "status": 404,
+      "type": "text/plain; charset=utf-8"
+    }
+  ],
+  "browser": {
+    "errors": [],
+    "apiFailures": [],
+    "launched": true,
+    "movedAndFired": true,
+    "pausedAndResumed": true,
+    "testHookAbsent": true
+  }
+}
