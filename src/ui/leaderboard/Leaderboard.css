@@ -1,0 +1,149 @@
+.leaderboard {
+  text-align: left;
+  width: 100%;
+  border-top: 1px solid #334752;
+  padding-top: 17px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-heading h3 {
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.section-heading > span {
+  font-size: 9px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+}
+
+.rankings {
+  margin: 11px 0;
+  max-height: 180px;
+  overflow: auto;
+  scrollbar-color: #3a5360 #102431;
+  scrollbar-width: thin;
+}
+
+.rankings p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.network-message button {
+  padding: 0;
+}
+
+.ranking-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ranking-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #263b47;
+}
+
+.rank {
+  color: var(--cyan);
+  font-size: 10px;
+  width: 18px;
+}
+
+.rank-person {
+  flex: 1;
+  min-width: 0;
+}
+
+.rank-person strong {
+  font-size: 11px;
+  font-weight: 400;
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.rank-person small {
+  font-size: 9px;
+  color: var(--muted);
+  display: block;
+  margin-top: 3px;
+}
+
+.rank-score {
+  font-size: 12px;
+  color: var(--amber);
+}
+
+.score-form {
+  border-top: 1px solid #263b47;
+  padding-top: 13px;
+}
+
+.score-form label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+
+.score-form label span {
+  font-size: 9px;
+  color: var(--muted);
+  display: block;
+  margin-top: 4px;
+}
+
+.form-row {
+  display: flex;
+  gap: 6px;
+}
+
+.form-row input {
+  width: 100%;
+  min-width: 0;
+  background: #132735;
+  border: 1px solid #3b5361;
+  border-radius: 2px;
+  color: var(--cream);
+  font-size: 11px;
+  padding: 10px;
+}
+
+.form-row input::placeholder {
+  color: #93a6b2;
+}
+
+.form-row button {
+  background: #314954;
+  color: var(--cream);
+  font-size: 11px;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 2px;
+}
+
+.form-error {
+  font-size: 10px;
+  color: #ff9fac;
+  margin-bottom: 0;
+}
+
+.score-form .fine-print {
+  margin: 8px 0 0;
+}
+
+.submission-success {
+  font-size: 11px;
+  color: var(--cyan);
+  line-height: 1.7;
+}

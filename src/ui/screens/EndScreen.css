@@ -1,0 +1,75 @@
+.end-screen {
+  padding: 25px 23px;
+  background: linear-gradient(180deg, #091b29f2, #081522fa);
+}
+
+.end-screen .eyebrow {
+  font-size: 9px;
+  color: var(--pink);
+}
+
+.end-screen h2 {
+  font-size: 54px;
+  margin: 12px 0;
+}
+
+.victory-screen h2 {
+  color: var(--acid);
+}
+
+.victory-screen .eyebrow {
+  color: var(--cyan);
+}
+
+.victory-copy {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.end-score {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin: 4px 0 14px;
+}
+
+.end-score > span {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.end-score strong {
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--amber);
+  line-height: 1.15;
+}
+
+.end-score small {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.end-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 17px;
+}
+
+.end-actions .primary-button {
+  min-width: 148px;
+  padding: 10px 14px;
+  font-size: 11px;
+  gap: 13px;
+}
+
+.end-actions .text-button {
+  font-size: 10px;
+}

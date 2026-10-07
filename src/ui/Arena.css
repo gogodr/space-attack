@@ -1,0 +1,36 @@
+.arena {
+  position: relative;
+  aspect-ratio: 20/28;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #314550;
+  border-radius: 3px;
+  background: #06121e;
+  outline: none;
+}
+
+.arena > div:first-child {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.arena canvas {
+  display: block;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.08;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    #000 2px,
+    #000 4px
+  );
+}

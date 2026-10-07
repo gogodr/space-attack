@@ -1,0 +1,29 @@
+.cabinet {
+  border: 1px solid #40505a;
+  background: #08131e;
+  padding: 17px 18px 16px;
+  border-radius: 9px;
+  box-shadow:
+    0 24px 70px #0005,
+    inset 0 0 0 4px #10222c;
+  position: relative;
+}
+
+.cabinet:before,
+.cabinet:after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border: 1px solid #50636b;
+  border-radius: 50%;
+  top: 7px;
+}
+
+.cabinet:before {
+  left: 7px;
+}
+
+.cabinet:after {
+  right: 7px;
+}

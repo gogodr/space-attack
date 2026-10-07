@@ -1,0 +1,26 @@
+.side-panel {
+  max-width: 248px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyan);
+  display: block;
+  line-height: 1.7;
+}
+
+.side-panel h2 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+  font-size: 35px;
+  line-height: 1.08;
+  letter-spacing: 0.7px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.side-panel p {
+  font-size: 12px;
+  color: var(--muted);
+}

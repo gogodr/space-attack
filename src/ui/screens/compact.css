@@ -1,0 +1,57 @@
+.compact-screen {
+  justify-content: center;
+}
+
+.compact-screen h2,
+.end-screen h2 {
+  font-family: 'Barlow Condensed', Impact, 'Arial Narrow', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 0.95;
+  margin: 20px 0;
+  color: var(--cream);
+  letter-spacing: 2px;
+}
+
+.compact-screen > p {
+  font-size: 12px;
+  color: #a9bcc4;
+}
+
+.compact-screen > .primary-button {
+  margin: 22px 0 14px;
+}
+
+.text-button {
+  background: transparent;
+  font-size: 11px;
+  color: #b4c4cc;
+  padding: 9px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.text-button:hover {
+  color: var(--acid);
+}
+
+.countdown {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 110px;
+  line-height: 1.2;
+  color: var(--amber);
+}
+
+.hit-screen .eyebrow {
+  color: var(--pink);
+}
+
+.hit-screen h2 {
+  font-size: 44px;
+}
+
+.summary-score {
+  font-size: 34px;
+  color: var(--amber);
+  margin: 12px;
+}

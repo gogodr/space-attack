@@ -1,0 +1,14 @@
+.protection-label {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  background: #071522d9;
+  padding: 7px 10px;
+  z-index: 2;
+  border: 1px solid #72e8e444;
+}

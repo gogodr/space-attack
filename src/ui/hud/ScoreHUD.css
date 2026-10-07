@@ -1,0 +1,47 @@
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hud-top {
+  height: 56px;
+  margin-bottom: 13px;
+}
+
+.hud-label {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  display: block;
+  line-height: 1.5;
+}
+
+.hud strong {
+  font-weight: 400;
+  color: var(--amber);
+  font-size: 22px;
+  letter-spacing: 1px;
+  display: block;
+  margin-top: 3px;
+}
+
+.hud-right {
+  text-align: right;
+}
+
+.sector-indicator {
+  text-align: center;
+}
+
+.sector-indicator strong {
+  font-size: 20px;
+  color: var(--cream);
+}
+
+.sector-indicator small {
+  font-size: 11px;
+  color: #69828d;
+  letter-spacing: 0;
+}

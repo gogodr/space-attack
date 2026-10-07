@@ -1,0 +1,12 @@
+.screen-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(180deg, #071522d9, #071522ed);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 35px 24px;
+  overflow: auto;
+}

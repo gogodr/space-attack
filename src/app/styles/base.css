@@ -1,0 +1,70 @@
+:root {
+  font-family: 'DM Mono', ui-monospace, Consolas, monospace;
+  color: #f0ead6;
+  background: #06111b;
+  font-synthesis: none;
+  font-weight: 400;
+  --cream: #f0ead6;
+  --muted: #91a2ad;
+  --acid: #e9ff6a;
+  --cyan: #72e8e4;
+  --pink: #f66ba3;
+  --amber: #f3c977;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 340px;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    #142b35 0,
+    #081923 36%,
+    #06111b 72%
+  );
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a,
+input {
+  touch-action: manipulation;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+button {
+  border: 0;
+}
+
+p {
+  line-height: 1.7;
+}

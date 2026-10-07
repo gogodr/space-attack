@@ -1,0 +1,248 @@
+{
+  "image": "space-attack-atlas.png",
+  "width": 1024,
+  "height": 512,
+  "cell": 128,
+  "columns": 8,
+  "gutter": 8,
+  "clips": {
+    "player": {
+      "first": 0,
+      "count": 4,
+      "fps": 10
+    },
+    "enemy-a": {
+      "first": 4,
+      "count": 4,
+      "fps": 6
+    },
+    "enemy-b": {
+      "first": 8,
+      "count": 4,
+      "fps": 7
+    },
+    "enemy-c": {
+      "first": 12,
+      "count": 4,
+      "fps": 8
+    },
+    "explosion": {
+      "first": 16,
+      "count": 4,
+      "fps": 10
+    },
+    "cancel": {
+      "first": 20,
+      "count": 4,
+      "fps": 10
+    },
+    "laser-player": {
+      "first": 24,
+      "count": 2,
+      "fps": 12
+    },
+    "laser-enemy": {
+      "first": 26,
+      "count": 2,
+      "fps": 8
+    }
+  },
+  "frames": [
+    {
+      "index": 0,
+      "x": 0,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 1,
+      "x": 128,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 2,
+      "x": 256,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 3,
+      "x": 384,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 4,
+      "x": 512,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 5,
+      "x": 640,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 6,
+      "x": 768,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 7,
+      "x": 896,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 8,
+      "x": 0,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 9,
+      "x": 128,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 10,
+      "x": 256,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 11,
+      "x": 384,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 12,
+      "x": 512,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 13,
+      "x": 640,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 14,
+      "x": 768,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 15,
+      "x": 896,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 16,
+      "x": 0,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 17,
+      "x": 128,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 18,
+      "x": 256,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 19,
+      "x": 384,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 20,
+      "x": 512,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 21,
+      "x": 640,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 22,
+      "x": 768,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 23,
+      "x": 896,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 24,
+      "x": 0,
+      "y": 384,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 25,
+      "x": 128,
+      "y": 384,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 26,
+      "x": 256,
+      "y": 384,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "index": 27,
+      "x": 384,
+      "y": 384,
+      "width": 128,
+      "height": 128
+    }
+  ]
+}

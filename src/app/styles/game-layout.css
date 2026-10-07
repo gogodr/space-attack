@@ -1,0 +1,7 @@
+.game-layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(350px, 510px) 1fr;
+  gap: clamp(28px, 4.5vw, 72px);
+  align-items: center;
+  margin: 24px auto 20px;
+}
